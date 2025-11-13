@@ -54,3 +54,49 @@ userOverlay.onclick = e => {
     document.body.style.overflow = 'auto';
   }
 };
+let isLoggedIn = true; // mudar p true pra testar estado logado
+
+const notLoggedContent = document.getElementById('notLoggedContent');
+const loggedContent = document.getElementById('loggedContent');
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+
+// Função para atualizar a interface
+function updateUserInterface() {
+    if (isLoggedIn) {
+        notLoggedContent.style.display = 'none';
+        loggedContent.style.display = 'block';
+    } else {
+        notLoggedContent.style.display = 'block';
+        loggedContent.style.display = 'none';
+    }
+}
+
+// Simular login 
+if (loginBtn) {
+    loginBtn.onclick = (e) => {
+        e.preventDefault();
+        isLoggedIn = true;
+        updateUserInterface();
+        userOverlay.classList.remove('active');
+        userPopup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    };
+}
+
+// Logout
+if (logoutBtn) {
+    logoutBtn.onclick = (e) => {
+        e.preventDefault();
+        isLoggedIn = false;
+        updateUserInterface();
+    };
+}
+
+// Atualizar interface ao abrir o popup
+userBtn.onclick = () => {
+    updateUserInterface(); // Verifica o estado antes de abrir
+    userOverlay.classList.add('active');
+    userPopup.classList.add('active');
+    document.body.style.overflow = 'hidden';
+};
