@@ -11,6 +11,25 @@
 
 </head>
 <body> 
+  <!-- Popup de Favoritos -->
+  <div class="popup-overlay" id="favoritesOverlay">
+    <div class="popup" id="favoritesPopup">
+        <button class="popup-close" id="closeFavorites">✕</button>
+        <div class="popup-header">
+            <span class="cart-icon-large">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </span>
+            <h2 class="popup-title">Favoritos</h2>
+        </div>
+        <div class="cart-items" id="favoritesItems">
+            <p class="empty-message">Nenhum favorito ainda</p>
+        </div>
+    </div>
+</div>
+
+  <!-- Popup de Carrinho -->
   <div class="popup-overlay" id="cartOverlay">
     <div class="popup" id="cartPopup">
         <button class="popup-close" id="closeCart">✕</button>
@@ -23,17 +42,14 @@
             </svg>
         </span>            <h2 class="popup-title">Carrinho</h2>
         </div>
-        <div class="cart-items">
-            <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
-            <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
-            <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
-            <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-message">Carrinho vazio</p>
         </div>
         <div class="cart-total">
             <p class="cart-total-label">Total</p>
-            <p class="cart-total-price">R$ 349,90</p>
+            <p class="cart-total-price" id="cartTotal">R$ 0,00</p>
         </div>
-        <button class="finalize-btn">Finalizar Compra</button>
+        <button class="finalize-btn" onclick="window.location.href='pagamento.html'">Finalizar Compra</button>
     </div>
 </div>
            <div class="popup-overlay" id="userOverlay">
@@ -53,8 +69,8 @@
                 <h2 class="login-title">Cadastre-se<br>para acesso!</h2>
             </div>
             <div class="login-actions">
-                <a href="#" class="login-link">Clique aqui pra realizar o cadastro</a>
-                <a href="#" class="login-btn" id="loginBtn">Login</a>
+                <a href="cadastro.html" class="login-link">Clique aqui pra realizar o cadastro</a>
+                <a href="cadastro.html" class="login-btn" id="loginBtn">Login</a>
             </div>
         </div>
 
@@ -78,11 +94,10 @@
         </div>
     </div>
 </div>
-</div>
-  </div>
-  <header>  </header>
+    </div>
+
     <header>
-         <div class="header-left">
+        <div class="header-left">
             <div class="search-bar">
                 <span class="search-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -106,27 +121,28 @@
                 <div class="dropdown-columns">
                     <div class="dropdown-column">
                         <a href="produtos.html?categoria=ofertas" class="dropdown-title">OFERTAS</a>                          
-                        <a href="produtos.html?categoria=acessorios">ACESSÓRIOS E FERRAMENTAS</a>
+                        <a href="produtos.html?categoria=cilios">ACESSÓRIOS E FERRAMENTAS</a>
                         <a href="produtos.html?categoria=cilios">CÍLIOS BEAUTY START</a>
-                        <a href="produtos.html?categoria=colas" class="dropdown-title">COLAS E REMOVEDORES</a>                        
-                        <a href="produtos.html?categoria=amostra">AMOSTRA ADESIVO</a>
+                        <a href="produtos.html?categoria=ofertas" class="dropdown-title">COLAS E REMOVEDORES</a>                        
+                        <a href="produtos.html?categoria=ofertas">AMOSTRA ADESIVO</a>
                     </div>
                     <div class="dropdown-column">
                         <a href="produtos.html?categoria=cilios" class="dropdown-title">CÍLIOS</a>                        
-                        <a href="produtos.html?categoria=ciliospreto">CÍLIOS PRETO</a>
-                        <a href="produtos.html?categoria=cilioscolorido">CÍLIOS COLORIDO</a>
-                        <a href="produtos.html?categoria=fiostecnologicos">FIOS TECNOLÓGICOS</a>
-                        <a href="produtos.html?categoria=volumebr">VOLUME BRASILEIRO</a>
-                        <a href="produtos.html?categoria=volumeru">VOLUME RUSSO</a>
-                        <a href="produtos.html?categoria=megavolume">MEGA VOLUME</a>
+                        <a href="produtos.html?categoria=cilios">CÍLIOS PRETO</a>
+                        <a href="produtos.html?categoria=cilios">CÍLIOS COLORIDO</a>
+                        <a href="produtos.html?categoria=cilios">FIOS TECNOLÓGICOS</a>
+                        <a href="produtos.html?categoria=cilios">VOLUME BRASILEIRO</a>
+                        <a href="produtos.html?categoria=cilios">VOLUME RUSSO</a>
+                        <a href="produtos.html?categoria=cilios">MEGA VOLUME</a>
                         <a href="produtos.html?categoria=cursos" class="dropdown-title">CURSOS</a>                        
-                        <a href="produtos.html?categoria=clubdvtg">CLUBE DE VANTAGEM</a>
-                        </div>
-                        <div class="dropdown-column">
+                        <a href="produtos.html?categoria=cursos">CLUBE DE VANTAGEM</a>
+                    </div>
+                    <div class="dropdown-column">
                         <a href="produtos.html?categoria=kits" class="dropdown-title">KITS</a>                        
-                        <a href="produtos.html?categoria=kitlicenciada">KIT LICENCIADA</a>
+                        <a href="produtos.html?categoria=kits">KIT LICENCIADA</a>
                         <a href="produtos.html?categoria=pincas" class="dropdown-title">PINÇAS</a>
-                        <a href="produtos.html?categoria=cabelo" class="dropdown-title">CABELO</a>                    </div>
+                        <a href="produtos.html?categoria=cabelo" class="dropdown-title">CABELO</a>
+                    </div>
                 </div>
             </div>
         </div>                
@@ -134,21 +150,26 @@
                 <a href="#contato">Contato</a>
             </nav>
             <div class="icons">
+            <button class="icon-btn" id="favoritesBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span class="cart-badge" id="favoritesBadge">0</span>
+            </button>
             <button class="icon-btn" id="cartBtn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="8" cy="21" r="1"></circle>
-                <circle cx="19" cy="21" r="1"></circle>
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-            </svg>
-            <span class="cart-badge" id="cartBadge">0</span>
-        </button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <span class="cart-badge" id="cartBadge">0</span>
             </button>
             <button class="icon-btn" id="userBtn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-</button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
         </div>
             </div>
         </div>
@@ -192,13 +213,13 @@
             <div class="search-item-card"><img src="images/escovinha.jpg" alt="Cuidados Pós-Extensão"></div>
         </div>
 
-        <a href="#" class="quick-btn">
+        <a href="produtos.html?categoria=cursos" class="quick-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
         </svg>
         Cursos
     </a>
-    <a href="#" class="quick-btn">
+    <a href="produtos.html?categoria=kits" class="quick-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
         </svg>
@@ -212,8 +233,15 @@
     <section class="products-section">
         <div class="section-header">
             <h2>Produtos em tendência</h2>
-            <a href="produtos.html" class="view-all">Conheça Todos →</a>            </div>
-            <div class="products-grid">
+            <a href="produtos.html" class="view-all">Conheça Todos →</a>
+        </div>
+        <div class="home-carousel-wrapper">
+            <button class="home-carousel-arrow home-carousel-arrow-left" onclick="scrollHomeProducts('left')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <div class="home-products-carousel" id="homeProductsCarousel">
                 <div class="product-card">
             <div class="product-image-wrapper">
             <button class="favorite-btn">♡</button>
@@ -247,6 +275,12 @@
         <div class="price">R$ 15,00</div>
     </div>
 </div>
+            </div>
+            <button class="home-carousel-arrow home-carousel-arrow-right" onclick="scrollHomeProducts('right')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
         </div>
     </section>
 
@@ -261,24 +295,20 @@
     </div>
 </section>
     <section class="contact-section" id="contato">
-        <div class="contact-container">
-            <h2>Precisa de ajuda?<br>Estamos felizes em te ajudar!</h2>
-            <p>Envie sua dúvida que retornaremos em breve</p>
-            <form>
-                <div class="form-group">
-                    <input type="text" placeholder="Seu nome" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Seu e-mail" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" placeholder="Telefone ou celular">
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Sua mensagem..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Enviar contato →</button>
-            </form>
+        <div class="contact-container whatsapp-section">
+            <div class="whatsapp-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+            </div>
+            <h2>Entre no nosso grupo de WhatsApp<br>e receba ofertas exclusivas!</h2>
+            <p>Seja o primeiro a saber sobre promoções, lançamentos e dicas especiais</p>
+            <a href="https://chat.whatsapp.com/JZnkt60TCw56fqVeEZITtB" target="_blank" class="whatsapp-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Entrar no Grupo do WhatsApp
+            </a>
         </div>
     </section>
 

@@ -9,31 +9,48 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="popup-overlay" id="cartOverlay">
-    <div class="popup" id="cartPopup">
-        <button class="popup-close" id="closeCart">✕</button>
-        <div class="popup-header">
-        <span class="cart-icon-large">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="8" cy="21" r="1"></circle>
-                <circle cx="19" cy="21" r="1"></circle>
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-            </svg>
-        </span>            <h2 class="popup-title">Carrinho</h2>
+    <!-- Popup de Favoritos -->
+    <div class="popup-overlay" id="favoritesOverlay">
+        <div class="popup" id="favoritesPopup">
+            <button class="popup-close" id="closeFavorites">✕</button>
+            <div class="popup-header">
+                <span class="cart-icon-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </span>
+                <h2 class="popup-title">Favoritos</h2>
+            </div>
+            <div class="cart-items" id="favoritesItems">
+                <p class="empty-message">Nenhum favorito ainda</p>
+            </div>
         </div>
-        <div class="cart-items">
-            <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
-            <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
-            <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
-            <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
-        </div>
-        <div class="cart-total">
-            <p class="cart-total-label">Total</p>
-            <p class="cart-total-price">R$ 349,90</p>
-        </div>
-        <button class="finalize-btn">Finalizar Compra</button>
     </div>
-</div> <div class="popup-overlay" id="userOverlay">
+
+    <!-- Popup de Carrinho -->
+    <div class="popup-overlay" id="cartOverlay">
+        <div class="popup" id="cartPopup">
+            <button class="popup-close" id="closeCart">✕</button>
+            <div class="popup-header">
+                <span class="cart-icon-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                    </svg>
+                </span>
+                <h2 class="popup-title">Carrinho</h2>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-message">Carrinho vazio</p>
+            </div>
+            <div class="cart-total">
+                <p class="cart-total-label">Total</p>
+                <p class="cart-total-price" id="cartTotal">R$ 0,00</p>
+            </div>
+            <button class="finalize-btn" onclick="window.location.href='pagamento.html'">Finalizar Compra</button>
+        </div>
+    </div> <div class="popup-overlay" id="userOverlay">
     <div class="popup user-popup" id="userPopup">
         <button class="popup-close" id="closeUser">✕</button>
         
@@ -50,8 +67,8 @@
                 <h2 class="login-title">Cadastre-se<br>para acesso!</h2>
             </div>
             <div class="login-actions">
-                <a href="#" class="login-link">Clique aqui pra realizar o cadastro</a>
-                <a href="#" class="login-btn" id="loginBtn">Login</a>
+                <a href="cadastro.html" class="login-link">Clique aqui pra realizar o cadastro</a>
+                <a href="cadastro.html" class="login-btn" id="loginBtn">Login</a>
             </div>
         </div>
 
@@ -74,12 +91,10 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-  </div>
- <header> 
+    </div>
+
     <header>
-         <div class="header-left">
+        <div class="header-left">
             <div class="search-bar">
                 <span class="search-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -102,29 +117,29 @@
             <div class="dropdown-menu">
                 <div class="dropdown-columns">
                     <div class="dropdown-column">
-                        <a href="#" class="dropdown-title">OFERTAS</a>                          
-                        <a href="#">ACESSÓRIOS E FERRAMENTAS</a>
-                        <a href="#">CÍLIOS BEAUTY START</a>
-                        <a href="#" class="dropdown-title">COLAS E REMOVEDORES</a>                        
-                        <a href="#">ACESSÓRIOS E FERRAMENTAS</a>
-                        <a href="#">AMOSTRA ADESIVO</a>
+                        <a href="produtos.html?categoria=ofertas" class="dropdown-title">OFERTAS</a>                          
+                        <a href="produtos.html?categoria=cilios">ACESSÓRIOS E FERRAMENTAS</a>
+                        <a href="produtos.html?categoria=cilios">CÍLIOS BEAUTY START</a>
+                        <a href="produtos.html?categoria=ofertas" class="dropdown-title">COLAS E REMOVEDORES</a>                        
+                        <a href="produtos.html?categoria=ofertas">AMOSTRA ADESIVO</a>
                     </div>
                     <div class="dropdown-column">
-                        <a href="#" class="dropdown-title">CÍLIOS</a>                        
-                        <a href="#">CÍLIOS PRETO</a>
-                        <a href="#">CÍLIOS COLORIDO</a>
-                        <a href="#">FIOS TECNOLÓGICOS</a>
-                        <a href="#">VOLUME BRASILEIRO</a>
-                        <a href="#">VOLUME RUSSO</a>
-                        <a href="#">MEGA VOLUME</a>
-                        <a href="#" class="dropdown-title">CURSOS</a>                        
-                        <a href="#">CLUBE DE VANTAGEM</a>
-                        </div>
-                        <div class="dropdown-column">
-                        <a href="#" class="dropdown-title">KITS</a>                        
-                        <a href="#">KIT LICENCIADA</a>
-                        <a href="#" class="dropdown-title">PINÇAS</a>
-                        <a href="#" class="dropdown-title">CABELO</a>                    </div>
+                        <a href="produtos.html?categoria=cilios" class="dropdown-title">CÍLIOS</a>                        
+                        <a href="produtos.html?categoria=cilios">CÍLIOS PRETO</a>
+                        <a href="produtos.html?categoria=cilios">CÍLIOS COLORIDO</a>
+                        <a href="produtos.html?categoria=cilios">FIOS TECNOLÓGICOS</a>
+                        <a href="produtos.html?categoria=cilios">VOLUME BRASILEIRO</a>
+                        <a href="produtos.html?categoria=cilios">VOLUME RUSSO</a>
+                        <a href="produtos.html?categoria=cilios">MEGA VOLUME</a>
+                        <a href="produtos.html?categoria=cursos" class="dropdown-title">CURSOS</a>                        
+                        <a href="produtos.html?categoria=cursos">CLUBE DE VANTAGEM</a>
+                    </div>
+                    <div class="dropdown-column">
+                        <a href="produtos.html?categoria=kits" class="dropdown-title">KITS</a>                        
+                        <a href="produtos.html?categoria=kits">KIT LICENCIADA</a>
+                        <a href="produtos.html?categoria=pincas" class="dropdown-title">PINÇAS</a>
+                        <a href="produtos.html?categoria=cabelo" class="dropdown-title">CABELO</a>
+                    </div>
                 </div>
             </div>
         </div>                
@@ -132,41 +147,465 @@
                 <a href="#contato">Contato</a>
             </nav>
             <div class="icons">
+            <button class="icon-btn" id="favoritesBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span class="cart-badge" id="favoritesBadge">0</span>
+            </button>
             <button class="icon-btn" id="cartBtn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="8" cy="21" r="1"></circle>
-                <circle cx="19" cy="21" r="1"></circle>
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-            </svg>
-            <span class="cart-badge" id="cartBadge">0</span>
-        </button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <span class="cart-badge" id="cartBadge">0</span>
             </button>
             <button class="icon-btn" id="userBtn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-</button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
         </div>
             </div>
         </div>
     </header>
     
-    <!-- Conteúdo específico da página de produtos -->
-    <section class="all-products-section">
-        <h1>Todos os Produtos</h1>
-        <!-- Grid com TODOS os produtos -->
-    </section>
-      <section class="all-products-page">
-        <div class="products-header">
-            <h1 id="pageTitle">Todos os Produtos</h1>
-            <p id="searchResults"></p>
+    <!-- Hero Section da Página de Produtos -->
+    <section class="products-hero">
+        <div class="products-hero-content">
+            <h1>Descubra Produtos Incríveis</h1>
+            <p>Qualidade profissional para realçar sua beleza</p>
         </div>
+    </section>
 
-        <div class="products-container">
-            <!-- Grid de produtos será preenchido pelo JavaScript -->
-            <div class="products-grid" id="productsGrid">
-                <!-- Produtos aqui -->
+    <!-- Filtros -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <button class="filter-btn active" data-category="todos">Todos</button>
+            <button class="filter-btn" data-category="ofertas">Ofertas</button>
+            <button class="filter-btn" data-category="cilios">Cílios</button>
+            <button class="filter-btn" data-category="cursos">Cursos</button>
+            <button class="filter-btn" data-category="kits">Kits</button>
+            <button class="filter-btn" data-category="pincas">Pinças</button>
+            <button class="filter-btn" data-category="cabelo">Cabelo</button>
+        </div>
+    </section>
+
+    <!-- Grid de Produtos -->
+    <section class="all-products-page">
+        <div class="products-grid" id="productsGrid">
+            <!-- Produto 1 -->
+            <div class="product-card" data-category="cilios">
+                <div class="product-badge">Novo</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/cilios4d.png" alt="Cílios Volume 4D">
+                </div>
+                <div class="product-info">
+                    <h3>Cílios Volume 4D</h3>
+                    <p>Espessura 0.07 - Beauty Start</p>
+                    <div class="price-section">
+                        <span class="price">R$ 39,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-card" data-category="cilios">
+                <div class="product-badge sale">Oferta</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/wispy.png" alt="Cílios Wispy">
+                </div>
+                <div class="product-info">
+                    <h3>Cílios Curvatura Y</h3>
+                    <p>Volume Brasileiro - Mix</p>
+                    <div class="price-section">
+                        <span class="old-price">R$ 44,90</span>
+                        <span class="price">R$ 34,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-card" data-category="cilios">
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/sensualcilios.png" alt="Sensual Lash">
+                </div>
+                <div class="product-info">
+                    <h3>Sensual Lash</h3>
+                    <p>Curvatura L e M - 0.07</p>
+                    <div class="price-section">
+                        <span class="price">R$ 15,00</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-card" data-category="ofertas">
+                <div class="product-badge sale">Oferta</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/cola.png" alt="Cola Beauty Eyes">
+                </div>
+                <div class="product-info">
+                    <h3>Cola Beauty Eyes Pro</h3>
+                    <p>Secagem rápida - 5ml</p>
+                    <div class="price-section">
+                        <span class="old-price">R$ 109,90</span>
+                        <span class="price">R$ 89,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="product-card" data-category="cilios">
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/cilios4d.png" alt="Cílios Volume Russo">
+                </div>
+                <div class="product-info">
+                    <h3>Cílios Volume Russo</h3>
+                    <p>Espessura 0.05 - Ultra leve</p>
+                    <div class="price-section">
+                        <span class="price">R$ 45,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 6 -->
+            <div class="product-card" data-category="cursos">
+                <div class="product-badge">Popular</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/escovinha.jpg" alt="Curso Básico">
+                </div>
+                <div class="product-info">
+                    <h3>Curso Básico de Extensão</h3>
+                    <p>Online - Certificado incluso</p>
+                    <div class="price-section">
+                        <span class="price">R$ 297,00</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 7 -->
+            <div class="product-card" data-category="kits">
+                <div class="product-badge sale">-20%</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/extensao.png" alt="Kit Iniciante">
+                </div>
+                <div class="product-info">
+                    <h3>Kit Iniciante Completo</h3>
+                    <p>Tudo para começar</p>
+                    <div class="price-section">
+                        <span class="old-price">R$ 249,90</span>
+                        <span class="price">R$ 199,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 8 -->
+            <div class="product-card" data-category="cilios">
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/wispy.png" alt="Mega Volume">
+                </div>
+                <div class="product-info">
+                    <h3>Cílios Mega Volume</h3>
+                    <p>Curvatura D - 0.03</p>
+                    <div class="price-section">
+                        <span class="price">R$ 52,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 9 -->
+            <div class="product-card" data-category="cabelo">
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/cola.png" alt="Mega Hair">
+                </div>
+                <div class="product-info">
+                    <h3>Mega Hair Premium</h3>
+                    <p>100g - Cabelo natural</p>
+                    <div class="price-section">
+                        <span class="price">R$ 189,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 10 -->
+            <div class="product-card" data-category="pincas">
+                <div class="product-badge">Novo</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/escovinha.jpg" alt="Pinça Profissional">
+                </div>
+                <div class="product-info">
+                    <h3>Pinça Profissional Curva</h3>
+                    <p>Aço inoxidável - Ponta fina</p>
+                    <div class="price-section">
+                        <span class="price">R$ 68,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 11 -->
+            <div class="product-card" data-category="cilios">
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/sensualcilios.png" alt="Cílios Coloridos">
+                </div>
+                <div class="product-info">
+                    <h3>Cílios Coloridos Mix</h3>
+                    <p>Rosa, Azul e Roxo</p>
+                    <div class="price-section">
+                        <span class="price">R$ 42,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 12 -->
+            <div class="product-card" data-category="kits">
+                <div class="product-badge">Popular</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/extensao.png" alt="Kit Profissional">
+                </div>
+                <div class="product-info">
+                    <h3>Kit Profissional Premium</h3>
+                    <p>Licenciada - Completo</p>
+                    <div class="price-section">
+                        <span class="price">R$ 349,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 13 -->
+            <div class="product-card" data-category="pincas">
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/escovinha.jpg" alt="Pinça Reta">
+                </div>
+                <div class="product-info">
+                    <h3>Pinça Profissional Reta</h3>
+                    <p>Aço inoxidável - Precisão</p>
+                    <div class="price-section">
+                        <span class="price">R$ 65,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 14 -->
+            <div class="product-card" data-category="cursos">
+                <div class="product-badge sale">-30%</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/extensao.png" alt="Curso Avançado">
+                </div>
+                <div class="product-info">
+                    <h3>Curso Avançado Volume Russo</h3>
+                    <p>Presencial - São Paulo</p>
+                    <div class="price-section">
+                        <span class="old-price">R$ 997,00</span>
+                        <span class="price">R$ 697,00</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 15 -->
+            <div class="product-card" data-category="cabelo">
+                <div class="product-badge">Novo</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/cola.png" alt="Aplique">
+                </div>
+                <div class="product-info">
+                    <h3>Aplique Tic Tac</h3>
+                    <p>60cm - Liso natural</p>
+                    <div class="price-section">
+                        <span class="price">R$ 129,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 16 -->
+            <div class="product-card" data-category="ofertas">
+                <div class="product-badge sale">Oferta</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/cilios4d.png" alt="Kit Cílios">
+                </div>
+                <div class="product-info">
+                    <h3>Kit 3 Cílios Variados</h3>
+                    <p>Mix de curvaturas</p>
+                    <div class="price-section">
+                        <span class="old-price">R$ 119,70</span>
+                        <span class="price">R$ 99,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 17 -->
+            <div class="product-card" data-category="pincas">
+                <div class="product-badge">Popular</div>
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/escovinha.jpg" alt="Kit Pinças">
+                </div>
+                <div class="product-info">
+                    <h3>Kit 3 Pinças Profissionais</h3>
+                    <p>Reta, Curva e L</p>
+                    <div class="price-section">
+                        <span class="price">R$ 179,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 18 -->
+            <div class="product-card" data-category="cabelo">
+                <div class="product-image-wrapper">
+                    <button class="favorite-btn">♡</button>
+                    <img src="images/produtos/cola.png" alt="Fita Adesiva">
+                </div>
+                <div class="product-info">
+                    <h3>Fita Adesiva para Mega Hair</h3>
+                    <p>Pack com 40 unidades</p>
+                    <div class="price-section">
+                        <span class="price">R$ 45,90</span>
+                        <button class="add-to-cart-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

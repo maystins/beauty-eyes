@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - Beauty Eyes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Popups (mesmo código das outras páginas) -->
+    <div class="popup-overlay" id="favoritesOverlay">
+        <div class="popup" id="favoritesPopup">
+            <button class="popup-close" id="closeFavorites">✕</button>
+            <div class="popup-header">
+                <span class="cart-icon-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </span>
+                <h2 class="popup-title">Favoritos</h2>
+            </div>
+            <div class="cart-items" id="favoritesItems">
+                <p class="empty-message">Nenhum favorito ainda</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="cartOverlay">
+        <div class="popup" id="cartPopup">
+            <button class="popup-close" id="closeCart">✕</button>
+            <div class="popup-header">
+                <span class="cart-icon-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                    </svg>
+                </span>
+                <h2 class="popup-title">Carrinho</h2>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-message">Carrinho vazio</p>
+            </div>
+            <div class="cart-total">
+                <p class="cart-total-label">Total</p>
+                <p class="cart-total-price" id="cartTotal">R$ 0,00</p>
+            </div>
+            <button class="finalize-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="userOverlay">
+        <div class="popup user-popup" id="userPopup">
+            <button class="popup-close" id="closeUser">✕</button>
+            <div id="notLoggedContent">
+                <div class="popup-header">
+                    <div class="user-icon-large">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <p class="login-label">ACESSO RESTRITO</p>
+                    <h2 class="login-title">Cadastre-se<br>para acesso!</h2>
+                </div>
+                <div class="login-actions">
+                    <a href="cadastro.html" class="login-link">Clique aqui pra realizar o cadastro</a>
+                    <a href="cadastro.html" class="login-btn" id="loginBtn">Login</a>
+                </div>
+            </div>
+            <div id="loggedContent" style="display: none;">
+                <div class="popup-header">
+                    <div class="user-icon-large">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h2 class="user-greeting">Olá, Usuário</h2>
+                </div>
+                <div class="user-menu">
+                    <a href="#" class="user-menu-item">Compras</a>
+                    <a href="#" class="user-menu-item">Histórico</a>
+                    <a href="#" class="user-menu-item">Configurações</a>
+                    <a href="#" class="user-menu-item" id="logoutBtn">Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-left">
+            <div class="search-bar">
+                <span class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </span>
+                <input type="text" placeholder="Buscar produtos...">
+            </div>
+        </div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Beauty Eyes Logo" class="logo-img">
+            </a>
+        </div>
+        <div class="header-right">
+            <nav>
+                <div class="dropdown">
+                    <a href="produtos.html" class="dropdown-toggle">Produtos ▼</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-columns">
+                            <div class="dropdown-column">
+                                <a href="produtos.html?categoria=ofertas" class="dropdown-title">OFERTAS</a>
+                                <a href="produtos.html?categoria=cilios">ACESSÓRIOS E FERRAMENTAS</a>
+                                <a href="produtos.html?categoria=cilios">CÍLIOS BEAUTY START</a>
+                            </div>
+                            <div class="dropdown-column">
+                                <a href="produtos.html?categoria=cilios" class="dropdown-title">CÍLIOS</a>
+                                <a href="produtos.html?categoria=cursos" class="dropdown-title">CURSOS</a>
+                                <a href="produtos.html?categoria=kits" class="dropdown-title">KITS</a>
+                            </div>
+                            <div class="dropdown-column">
+                                <a href="produtos.html?categoria=pincas" class="dropdown-title">PINÇAS</a>
+                                <a href="produtos.html?categoria=cabelo" class="dropdown-title">CABELO</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="index.html#sobre">Sobre</a>
+                <a href="index.html#contato">Contato</a>
+            </nav>
+            <div class="icons">
+                <button class="icon-btn" id="favoritesBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="cart-badge" id="favoritesBadge">0</span>
+                </button>
+                <button class="icon-btn" id="cartBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                    </svg>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
+                <button class="icon-btn" id="userBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Página de Detalhes do Produto -->
+    <section class="product-detail-page">
+        <div class="breadcrumb">
+            <a href="index.html">Início</a> / 
+            <a href="produtos.html">Produtos</a> / 
+            <span id="productName">Cílios Volume 4D</span>
+        </div>
+
+        <div class="product-detail-container">
+            <!-- Galeria de Imagens -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="images/produtos/cilios4d.png" alt="Produto" id="mainProductImage">
+                </div>
+                <div class="thumbnail-images">
+                    <img src="images/produtos/cilios4d.png" alt="Imagem 1" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="images/produtos/wispy.png" alt="Imagem 2" class="thumbnail" onclick="changeImage(this)">
+                    <img src="images/produtos/sensualcilios.png" alt="Imagem 3" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <!-- Informações do Produto -->
+            <div class="product-info-detail">
+                <h1 id="productTitle">Cílios Volume 4D - Beauty Start</h1>
+                <p class="product-description">Espessura 0.07 - Perfeito para volume natural</p>
+                
+                <div class="product-price-section">
+                    <span class="product-price-large">R$ 39,90</span>
+                    <span class="product-installment">ou 3x de R$ 13,30 sem juros</span>
+                </div>
+
+                <div class="payment-methods">
+                    <h3>Formas de Pagamento</h3>
+                    <div class="payment-icons">
+                        <span class="payment-badge">💳 Cartão de Crédito</span>
+                        <span class="payment-badge">💰 PIX (-5%)</span>
+                        <span class="payment-badge">🏦 Boleto</span>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <h3>Quantidade</h3>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="decreaseQty()">-</button>
+                        <input type="number" id="quantity" value="1" min="1" max="99">
+                        <button class="qty-btn" onclick="increaseQty()">+</button>
+                    </div>
+                </div>
+
+                <div class="product-actions">
+                    <button class="btn-buy-now" onclick="window.location.href='pagamento.html'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        Comprar Agora
+                    </button>
+                    <button class="btn-add-cart-large" onclick="addToCartFromDetail()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="8" cy="21" r="1"></circle>
+                            <circle cx="19" cy="21" r="1"></circle>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                        </svg>
+                        Adicionar ao Carrinho
+                    </button>
+                    <button class="btn-favorite-large" onclick="toggleFavoriteDetail()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        Favoritar
+                    </button>
+                </div>
+
+                <div class="product-info-tabs">
+                    <h3>Informações do Produto</h3>
+                    <div class="info-content">
+                        <p><strong>Espessura:</strong> 0.07mm</p>
+                        <p><strong>Curvatura:</strong> C, D</p>
+                        <p><strong>Comprimento:</strong> 8mm a 15mm</p>
+                        <p><strong>Material:</strong> Fibra sintética premium</p>
+                        <p><strong>Durabilidade:</strong> Até 6 semanas</p>
+                        <p><strong>Indicação:</strong> Profissionais e iniciantes</p>
+                    </div>
+                </div>
+
+                <div class="shipping-info">
+                    <h3>📦 Frete e Entrega</h3>
+                    <p>Calcule o prazo de entrega:</p>
+                    <div class="cep-calculator">
+                        <input type="text" placeholder="Digite seu CEP" maxlength="9">
+                        <button>Calcular</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Início</a>
+            <a href="produtos.html">Explorar</a>
+            <a href="index.html#sobre">Sobre</a>
+            <a href="#">Privacidade</a>
+            <a href="index.html#contato">Fale conosco</a>
+        </div>
+        <div class="social-links">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="produto-detail.js"></script>
+</body>
+</html>
