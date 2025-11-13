@@ -31,8 +31,6 @@
         <button class="finalize-btn">Finalizar Compra</button>
     </div>
 </div>
-
-<!-- POPUP DO USUÁRIO -->
 <div class="popup-overlay" id="userOverlay">
     <div class="popup user-popup" id="userPopup">
         <button class="popup-close" id="closeUser">✕</button>
@@ -50,9 +48,14 @@
   </div>
   <header>  </header>
     <header>
-        <div class="header-left">
+         <div class="header-left">
             <div class="search-bar">
-                <span class="search-icon">🔍</span>
+                <span class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </span>
                 <input type="text" placeholder="Buscar produtos...">
             </div>
         </div>
@@ -63,13 +66,54 @@
         
         <div class="header-right">
             <nav>
-                <a href="#home">Produtos ▼</a>
-                <a href="#sobre">Sobre</a>
+        <div class="dropdown">
+            <a href="#home" class="dropdown-toggle">Produtos ▼</a>
+            <div class="dropdown-menu">
+                <div class="dropdown-columns">
+                    <div class="dropdown-column">
+                        <h4>OFERTAS</h4>
+                        <a href="#">ACESSÓRIOS E FERRAMENTAS</a>
+                        <a href="#">CÍLIOS BEAUTY START</a>
+                        <h4>COLAS E REMOVEDORES</h4>
+                        <a href="#">AMOSTRA ADESIVO</a>
+                    </div>
+                    <div class="dropdown-column">
+                        <h4>CÍLIOS</h4>
+                        <a href="#">CÍLIOS PRETO</a>
+                        <a href="#">CÍLIOS COLORIDO</a>
+                        <a href="#">FIOS TECNOLÓGICOS</a>
+                        <a href="#">VOLUME BRASILEIRO</a>
+                        <a href="#">VOLUME RUSSO</a>
+                        <a href="#">MEGA VOLUME</a>
+                        <h4>CURSOS</h4>
+                        <a href="#">CLUBE DE VANTAGEM</a>
+                    </div>
+                    <div class="dropdown-column">
+                        <h4>KITS</h4>
+                        <a href="#">KIT LICENCIADA</a>
+                        <h4>PINÇAS</h4>
+                        <h4>CABELO</h4>
+                    </div>
+                </div>
+            </div>
+        </div>                
+        <a href="#sobre">Sobre</a>
                 <a href="#contato">Contato</a>
             </nav>
             <div class="icons">
-            <button class="icon-btn" id="cartBtn">🛒</button>
-            <button class="icon-btn" id="userBtn">👤</button>
+            <button class="icon-btn" id="cartBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="21" r="1"></circle>
+            <circle cx="19" cy="21" r="1"></circle>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+            </svg>
+            </button>
+            <button class="icon-btn" id="userBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+</button>
         </div>
             </div>
         </div>
@@ -114,13 +158,18 @@
             <div class="search-item-card"><img src="escovinha.jpg" alt="Cuidados Pós-Extensão"></div>
         </div>
 
-        <div class="quick-search-buttons">
-            <a href="#" class="quick-btn">
-                <span class="diamond">✧</span> Cursos
-            </a>
-            <a href="#" class="quick-btn">
-                <span class="diamond">✧</span> Kits
-            </a>
+        <a href="#" class="quick-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        Cursos
+    </a>
+    <a href="#" class="quick-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        Kits
+    </a>
         </div>
     </div>
     </div>
