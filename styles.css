@@ -1,4 +1,6 @@
-
+html {
+    scroll-behavior: smooth;
+}
         * {
             margin: 0;
             padding: 0;
@@ -85,6 +87,26 @@
 }
 
 .dropdown-column a:hover {
+    color: #d4689d;
+    padding-left: 5px;
+}
+.dropdown-column .dropdown-title {
+    color: #6b4654;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    padding: 5px 0;
+}
+
+.dropdown-column .dropdown-title:first-child {
+    margin-top: 0;
+}
+
+.dropdown-column .dropdown-title:hover {
     color: #d4689d;
     padding-left: 5px;
 }
@@ -197,12 +219,10 @@
     }
 
        .hero-content h1 {
-    /* CORREÇÃO DA COR: Mude para a cor do texto principal (#6b4654) ou algo mais escuro que o fundo */
-    font-size: 58px; /* Reduz o tamanho para que caiba bem em duas linhas */
-    color: #6b4654; /* Cor escura do texto principal */
+    font-size: 58px; 
+    color: #d3799b; 
     margin-bottom: 30px;
     line-height: 1.2;
-    /* Fonte correta já aplicada (Oswald) */
     font-family: 'Oswald', sans-serif; 
 }
 
@@ -248,7 +268,6 @@
     display: flex;
     justify-content: center; 
     align-items: center;
-    /* Move o bloco Olho/Folhas para a esquerda */
     transform: translateX(-50px); 
 }
    .eye-circle {
@@ -256,7 +275,7 @@
     height: 400px;
     overflow: hidden; 
     position: relative;
-    z-index: 5; /* Deve ser menor que 7 (do quick-search-box) */ 
+    z-index: 5; 
 }
 
     .eye-circle img {
@@ -274,24 +293,18 @@
 }
 
 .leaf-left {
-    top: 40%; /* Mantém a folha levantada na vertical */
+    top: 40%; 
     
     left: calc(50% - 200px - 60px); 
-    
-    /* CORREÇÃO AQUI: Removemos o transform: translateY(-50%) da folha estática.
-       O transform é aplicado na animação, evitando conflito. */
-    
     animation: float-left 6s ease-in-out infinite;
     z-index: 3;
 }
  .leaf-right {
     top: 50%;
-    /* Novo posicionamento: Ancoramos ao centro da imagem (50%) 
-       e a deslocamos para a direita (calc) em relação ao círculo do olho (200px) */
     right: calc(50% - 200px - 60px);
     transform: translateY(-50%) scaleX(-1);
     animation: float-right 6s ease-in-out infinite; 
-    z-index: 4; /* Novo z-index para garantir que fique atrás do olho (z-index: 5) */
+    z-index: 4; 
 }
 @keyframes float-right {
     0%, 100% {
@@ -303,10 +316,10 @@
 }
 @keyframes float-left {
     0%, 100% {
-        transform: translateY(0); /* A folha flutua a partir da sua posição inicial (top: 40%) */
+        transform: translateY(0); 
     }
     50% {
-        transform: translateY(-20px); /* Move 20px para cima */
+        transform: translateY(-20px); 
     }
 }
 .quick-search-box {
@@ -338,12 +351,11 @@
 }
 
 .search-item-card {
-    width: 120px; /* Aumenta o tamanho das imagens */
+    width: 120px; 
     height: 80px;
     background: white;
-    /* Borda e sombra adicionadas para o efeito do print */
     border-radius: 15px;
-    border: 2px solid #d4689d; /* Borda rosa ao redor da imagem */
+    border: 2px solid #d4689d; 
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
     overflow: hidden;
 }
@@ -361,9 +373,9 @@
 }
 
 .quick-btn {
-    flex: 1; /* Permite que os botões dividam o espaço */
+    flex: 1; 
     padding: 10px 10px;
-    background: #ffe3f0; /* Fundo rosa claro no botão (como no print) */
+    background: #ffe3f0; 
     border: 2px solid #d4689d;
     border-radius: 25px;
     color: #6b4654;
@@ -372,7 +384,7 @@
     font-size: 14px;
     text-align: center;
     transition: all 0.3s;
-    white-space: nowrap; /* Impede que o texto quebre */
+    white-space: nowrap; 
 }
 
 .quick-btn:hover {
@@ -380,7 +392,6 @@
     color: white;
 }
 
-/* Garante que o losango (✧) não use espaço extra */
 .quick-btn .diamond {
     color: #d4689d; 
     font-size: 8px;
@@ -392,17 +403,15 @@
 }
             .product-preview {
             position: absolute;
-            /* Move ele para o topo da imagem hero (acima do quick-search-box) */
             top: 10px; 
-            /* Move ele para a direita do quick-search-box, compensando o right: 70px */
-            right: 360px; /* Aproximadamente 70px (margem) + 280px (largura do quick-search-box) + 10px (espaçamento) = 360px */
-            background: #fdf5f9; /* Mudei para a cor do fundo da busca rápida (mais consistente) */
-            padding: 8px 15px; /* Reduzi o padding para ficar menor */
+            right: 360px; 
+            background: #fdf5f9; 
+            padding: 8px 15px; 
             border-radius: 15px;
-            border: 2px solid #d4689d; /* Adicionei borda para combinar com o bloco de busca */
+            border: 2px solid #d4689d; 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            z-index: 7; /* Z-index mais alto que o quick-search-box (6) */
+            z-index: 7; 
         }
 
         .product-preview-icon {
@@ -596,7 +605,12 @@
         .form-group textarea:focus {
             border-color: #d4689d;
         }
-
+        .product-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+}
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
@@ -784,4 +798,19 @@
         .user-menu{display:flex;flex-direction:column;gap:15px}
         .user-menu-item{background:white;padding:15px 25px;border-radius:15px;color:#6b4654;text-decoration:none;font-weight:500;transition:all .3s;text-align:center}
         .user-menu-item:hover{background:#6b4654;color:white;transform:translateX(5px)
+        }
+        .about-image {
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
