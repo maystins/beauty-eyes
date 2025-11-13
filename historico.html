@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Produto - Beauty Eyes</title>
+    <title>Histórico de Compras - Beauty Eyes</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Popups (mesmo código das outras páginas) -->
+    <!-- Popups -->
     <div class="popup-overlay" id="favoritesOverlay">
         <div class="popup" id="favoritesPopup">
             <button class="popup-close" id="closeFavorites">✕</button>
@@ -47,7 +47,7 @@
                 <p class="cart-total-label">Total</p>
                 <p class="cart-total-price" id="cartTotal">R$ 0,00</p>
             </div>
-            <button class="finalize-btn">Finalizar Compra</button>
+            <button class="finalize-btn" onclick="window.location.href='pagamento.html'">Finalizar Compra</button>
         </div>
     </div>
 
@@ -114,11 +114,9 @@
                         <div class="dropdown-columns">
                             <div class="dropdown-column">
                                 <a href="produtos.html?categoria=ofertas" class="dropdown-title">OFERTAS</a>
-                                <a href="produtos.html?categoria=cilios">ACESSÓRIOS E FERRAMENTAS</a>
-                                <a href="produtos.html?categoria=cilios">CÍLIOS BEAUTY START</a>
+                                <a href="produtos.html?categoria=cilios">CÍLIOS</a>
                             </div>
                             <div class="dropdown-column">
-                                <a href="produtos.html?categoria=cilios" class="dropdown-title">CÍLIOS</a>
                                 <a href="produtos.html?categoria=cursos" class="dropdown-title">CURSOS</a>
                                 <a href="produtos.html?categoria=kits" class="dropdown-title">KITS</a>
                             </div>
@@ -157,97 +155,104 @@
         </div>
     </header>
 
-    <!-- Página de Detalhes do Produto -->
-    <section class="product-detail-page">
+    <section class="user-page">
         <div class="breadcrumb">
-            <a href="index.html">Início</a> / 
-            <a href="produtos.html">Produtos</a> / 
-            <span id="productName">Cílios Volume 4D</span>
+            <a href="index.html">Home</a> / <span>Histórico de Compras</span>
         </div>
 
-        <div class="product-detail-container">
-            <!-- Galeria de Imagens -->
-            <div class="product-gallery">
-                <div class="main-image">
-                    <img src="images/produtos/cilios4d.png" alt="Produto" id="mainProductImage">
+        <div class="user-page-container">
+            <div class="user-page-decorations">
+                <span class="star-decoration">✦</span>
+                <span class="star-decoration">✦</span>
+            </div>
+            
+            <h1 class="user-page-title">Histórico de Compras</h1>
+
+            <div class="orders-list">
+                <!-- Pedido 1 -->
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-info">
+                            <span class="order-number">Pedido #12345</span>
+                            <span class="order-date">15/11/2024</span>
+                        </div>
+                        <span class="order-status status-delivered">Entregue</span>
+                    </div>
+                    <div class="order-items">
+                        <div class="order-item">
+                            <img src="images/produtos/cilios4d.png" alt="Produto">
+                            <div class="order-item-info">
+                                <h4>Cílios Volume 4D - Beauty Start</h4>
+                                <p>Quantidade: 2</p>
+                            </div>
+                            <span class="order-item-price">R$ 79,80</span>
+                        </div>
+                    </div>
+                    <div class="order-footer">
+                        <span class="order-total">Total: R$ 79,80</span>
+                        <button class="order-details-btn" onclick="showOrderDetails('12345')">Ver Detalhes</button>
+                    </div>
                 </div>
-                <div class="thumbnail-images">
-                    <img src="images/produtos/cilios4d.png" alt="Imagem 1" class="thumbnail active" onclick="changeImage(this)">
-                    <img src="images/produtos/wispy.png" alt="Imagem 2" class="thumbnail" onclick="changeImage(this)">
-                    <img src="images/produtos/sensualcilios.png" alt="Imagem 3" class="thumbnail" onclick="changeImage(this)">
+
+                <!-- Pedido 2 -->
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-info">
+                            <span class="order-number">Pedido #12344</span>
+                            <span class="order-date">10/11/2024</span>
+                        </div>
+                        <span class="order-status status-transit">Em Trânsito</span>
+                    </div>
+                    <div class="order-items">
+                        <div class="order-item">
+                            <img src="images/produtos/cola.png" alt="Produto">
+                            <div class="order-item-info">
+                                <h4>Cola Beauty Eyes Pro</h4>
+                                <p>Quantidade: 1</p>
+                            </div>
+                            <span class="order-item-price">R$ 89,90</span>
+                        </div>
+                    </div>
+                    <div class="order-footer">
+                        <span class="order-total">Total: R$ 89,90</span>
+                        <button class="order-details-btn" onclick="showOrderDetails('12344')">Ver Detalhes</button>
+                    </div>
+                </div>
+
+                <!-- Pedido 3 -->
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-info">
+                            <span class="order-number">Pedido #12343</span>
+                            <span class="order-date">05/11/2024</span>
+                        </div>
+                        <span class="order-status status-delivered">Entregue</span>
+                    </div>
+                    <div class="order-items">
+                        <div class="order-item">
+                            <img src="images/extensao.png" alt="Produto">
+                            <div class="order-item-info">
+                                <h4>Kit Iniciante Completo</h4>
+                                <p>Quantidade: 1</p>
+                            </div>
+                            <span class="order-item-price">R$ 199,90</span>
+                        </div>
+                    </div>
+                    <div class="order-footer">
+                        <span class="order-total">Total: R$ 199,90</span>
+                        <button class="order-details-btn" onclick="showOrderDetails('12343')">Ver Detalhes</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Informações do Produto -->
-            <div class="product-info-detail">
-                <h1 id="productTitle">Cílios Volume 4D - Beauty Start</h1>
-                <p class="product-description">Espessura 0.07 - Perfeito para volume natural</p>
-                
-                <div class="product-price-section">
-                    <span class="product-price-large">R$ 39,90</span>
-                    <span class="product-installment">ou 3x de R$ 13,30 sem juros</span>
-                </div>
-
-                <div class="payment-methods">
-                    <h3>Formas de Pagamento</h3>
-                    <div class="payment-icons">
-                        <span class="payment-badge">💳 Cartão de Crédito</span>
-                        <span class="payment-badge">💰 PIX (-5%)</span>
-                        <span class="payment-badge">🏦 Boleto</span>
+            <!-- Popup de Detalhes do Pedido -->
+            <div class="popup-overlay" id="orderDetailsOverlay">
+                <div class="popup order-details-popup" id="orderDetailsPopup">
+                    <button class="popup-close" onclick="closeOrderDetails()">✕</button>
+                    <div class="popup-header">
+                        <h2 class="popup-title">Detalhes do Pedido</h2>
                     </div>
-                </div>
-
-                <div class="quantity-selector">
-                    <h3>Quantidade</h3>
-                    <div class="quantity-controls">
-                        <button class="qty-btn" onclick="decreaseQty()">-</button>
-                        <input type="number" id="quantity" value="1" min="1" max="99">
-                        <button class="qty-btn" onclick="increaseQty()">+</button>
-                    </div>
-                </div>
-
-                <div class="product-actions">
-                    <button class="btn-buy-now" onclick="buyNow()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                        Comprar Agora
-                    </button>
-                    <button class="btn-add-cart-large" onclick="addToCartFromDetail()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="8" cy="21" r="1"></circle>
-                            <circle cx="19" cy="21" r="1"></circle>
-                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-                        </svg>
-                        Adicionar ao Carrinho
-                    </button>
-                    <button class="btn-favorite-large" onclick="toggleFavoriteDetail()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                        Favoritar
-                    </button>
-                </div>
-
-                <div class="product-info-tabs">
-                    <h3>Informações do Produto</h3>
-                    <div class="info-content">
-                        <p><strong>Espessura:</strong> 0.07mm</p>
-                        <p><strong>Curvatura:</strong> C, D</p>
-                        <p><strong>Comprimento:</strong> 8mm a 15mm</p>
-                        <p><strong>Material:</strong> Fibra sintética premium</p>
-                        <p><strong>Durabilidade:</strong> Até 6 semanas</p>
-                        <p><strong>Indicação:</strong> Profissionais e iniciantes</p>
-                    </div>
-                </div>
-
-                <div class="shipping-info">
-                    <h3>📦 Frete e Entrega</h3>
-                    <p>Calcule o prazo de entrega:</p>
-                    <div class="cep-calculator">
-                        <input type="text" placeholder="Digite seu CEP" maxlength="9">
-                        <button>Calcular</button>
-                    </div>
+                    <div id="orderDetailsContent"></div>
                 </div>
             </div>
         </div>
@@ -276,6 +281,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="produto-detalhe.js"></script>
+    <script src="historico.js"></script>
 </body>
 </html>

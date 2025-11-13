@@ -1,6 +1,7 @@
-// Funções de pagamento
+// ✨ Página de Pagamento ✨
+// Tudo pra finalizar a compra com segurança e estilo!
 
-// Máscara para CPF
+// Coloca a máscara no CPF
 document.addEventListener('DOMContentLoaded', () => {
     const cpfInput = document.getElementById('cpfInput');
     if (cpfInput) {
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Máscara para CEP
+    // Coloca a máscara no CEP
     const cepInput = document.getElementById('cepInput');
     if (cepInput) {
         cepInput.addEventListener('input', (e) => {
@@ -36,17 +37,25 @@ function finalizarPagamento() {
         return;
     }
     
-    const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+    const paymentMethod = document.querySelector('input[name="payment"]:checked');
+    if (!paymentMethod) {
+        alert('Por favor, selecione um método de pagamento.');
+        return;
+    }
     
-    // Simula processamento
-    alert(`Pagamento via ${paymentMethod} processado com sucesso!\n\nObrigado pela compra!`);
+    // Simula o processamento do pagamento
+    const btn = document.querySelector('.finalize-payment-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'PROCESSANDO...';
+    btn.disabled = true;
     
-    // Limpa carrinho
-    cartItems = [];
-    updateBadges();
-    
-    // Redireciona para home
     setTimeout(() => {
+        alert(`Pagamento via ${paymentMethod.value} processado com sucesso! 🎉\n\nObrigada pela compra!`);
+        
+        // Limpa o carrinho
+        localStorage.removeItem('cartItems');
+        
+        // Volta pra home
         window.location.href = 'index.html';
-    }, 1000);
+    }, 2000);
 }

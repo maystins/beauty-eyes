@@ -1,4 +1,5 @@
-// Funções de autenticação
+// ✨ Sistema de Login e Cadastro ✨
+// Pra deixar tudo seguro e organizado!
 
 function switchToLogin(event) {
     event.preventDefault();
@@ -26,27 +27,27 @@ function handleCadastro(event) {
         return;
     }
     
-    // Simula cadastro bem-sucedido
+    // Simula o cadastro
     alert('Cadastro realizado com sucesso!');
     
-    // Marca como logado
+    // Marca como logada
     isLoggedIn = true;
     updateUserInterface();
     
-    // Redireciona para home
+    // Volta pra home
     window.location.href = 'index.html';
 }
 
 function handleLogin(event) {
     event.preventDefault();
     
-    // Simula login bem-sucedido
+    // Simula o login
     alert('Login realizado com sucesso!');
     
-    // Marca como logado
+    // Marca como logada
     isLoggedIn = true;
     updateUserInterface();
     
-    // Redireciona para home
+    // Volta pra home
     window.location.href = 'index.html';
 }

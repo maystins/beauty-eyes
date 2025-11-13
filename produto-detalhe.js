@@ -1,20 +1,21 @@
-// Funções específicas da página de detalhes do produto
+// ✨ Página de Detalhes do Produto ✨
+// Aqui tem todas as funções pra deixar a página de produto linda e funcional!
 
-// Trocar imagem principal
+// Troca a imagem principal quando clica nas miniaturas
 function changeImage(thumbnail) {
     const mainImage = document.getElementById('mainProductImage');
     mainImage.src = thumbnail.src;
     
-    // Remove active de todas as thumbnails
+    // Tira o destaque de todas as miniaturas
     document.querySelectorAll('.thumbnail').forEach(thumb => {
         thumb.classList.remove('active');
     });
     
-    // Adiciona active na thumbnail clicada
+    // Destaca a miniatura clicada
     thumbnail.classList.add('active');
 }
 
-// Aumentar quantidade
+// Aumenta a quantidade
 function increaseQty() {
     const qtyInput = document.getElementById('quantity');
     let currentValue = parseInt(qtyInput.value);
@@ -23,7 +24,7 @@ function increaseQty() {
     }
 }
 
-// Diminuir quantidade
+// Diminui a quantidade
 function decreaseQty() {
     const qtyInput = document.getElementById('quantity');
     let currentValue = parseInt(qtyInput.value);
@@ -32,7 +33,7 @@ function decreaseQty() {
     }
 }
 
-// Adicionar ao carrinho da página de detalhes
+// Adiciona o produto no carrinho
 function addToCartFromDetail() {
     const productName = document.getElementById('productTitle').textContent;
     const priceText = document.querySelector('.product-price-large').textContent;
@@ -40,12 +41,23 @@ function addToCartFromDetail() {
     const image = document.getElementById('mainProductImage').src;
     const quantity = parseInt(document.getElementById('quantity').value);
     
-    // Adiciona a quantidade especificada
-    for (let i = 0; i < quantity; i++) {
-        addToCart({ name: productName, price: price, image: image });
+    // Vê se já tem esse produto no carrinho
+    const existingItem = cartItems.find(item => item.name === productName);
+    if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + quantity;
+    } else {
+        cartItems.push({ 
+            name: productName, 
+            price: price, 
+            image: image,
+            quantity: quantity
+        });
     }
     
-    // Feedback visual
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateBadges();
+    
+    // Mostra que foi adicionado
     const btn = document.querySelector('.btn-add-cart-large');
     btn.style.transform = 'scale(0.95)';
     btn.textContent = '✓ Adicionado!';
@@ -63,7 +75,34 @@ function addToCartFromDetail() {
     }, 2000);
 }
 
-// Toggle favorito na página de detalhes
+// Comprar agora - já vai direto pro pagamento
+function buyNow() {
+    const productName = document.getElementById('productTitle').textContent;
+    const priceText = document.querySelector('.product-price-large').textContent;
+    const price = parseFloat(priceText.replace('R$', '').replace(',', '.').trim());
+    const image = document.getElementById('mainProductImage').src;
+    const quantity = parseInt(document.getElementById('quantity').value);
+    
+    // Adiciona no carrinho
+    const existingItem = cartItems.find(item => item.name === productName);
+    if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + quantity;
+    } else {
+        cartItems.push({ 
+            name: productName, 
+            price: price, 
+            image: image,
+            quantity: quantity
+        });
+    }
+    
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    
+    // Vai pra página de pagamento
+    window.location.href = 'pagamento.html';
+}
+
+// Favorita ou desfavorita o produto
 function toggleFavoriteDetail() {
     const productName = document.getElementById('productTitle').textContent;
     const priceText = document.querySelector('.product-price-large').textContent;
@@ -84,7 +123,7 @@ function toggleFavoriteDetail() {
             Favoritar
         `;
     } else {
-        addToFavorites({ name: productName, price: price, image: image });
+        addToFavorites({ name: productName, price: price, image: image, quantity: 1 });
         btn.style.background = '#e91e63';
         btn.style.color = 'white';
         btn.innerHTML = `
@@ -96,7 +135,7 @@ function toggleFavoriteDetail() {
     }
 }
 
-// Máscara para CEP
+// Coloca a máscara no CEP
 document.addEventListener('DOMContentLoaded', () => {
     const cepInput = document.querySelector('.cep-calculator input');
     if (cepInput) {

@@ -1,101 +1,31 @@
-// Arrays para armazenar produtos
-let cartItems = [];
-let favoriteItems = [];
+// Guardando os produtos no carrinho e favoritos ♡
+let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+let favoriteItems = JSON.parse(localStorage.getItem('favoriteItems') || '[]');
 
-// Elementos do DOM
-const cartBtn = document.getElementById('cartBtn');
-const favoritesBtn = document.getElementById('favoritesBtn');
-const userBtn = document.getElementById('userBtn');
+// Elementos da página - vou pegar eles quando carregar tudo
+let cartBtn, favoritesBtn, userBtn;
+let cartOverlay, favoritesOverlay, userOverlay;
+let cartPopup, favoritesPopup, userPopup;
+let closeCart, closeFavorites, closeUser;
+let cartBadge, favoritesBadge;
 
-const cartOverlay = document.getElementById('cartOverlay');
-const favoritesOverlay = document.getElementById('favoritesOverlay');
-const userOverlay = document.getElementById('userOverlay');
-
-const cartPopup = document.getElementById('cartPopup');
-const favoritesPopup = document.getElementById('favoritesPopup');
-const userPopup = document.getElementById('userPopup');
-
-const closeCart = document.getElementById('closeCart');
-const closeFavorites = document.getElementById('closeFavorites');
-const closeUser = document.getElementById('closeUser');
-
-const cartBadge = document.getElementById('cartBadge');
-const favoritesBadge = document.getElementById('favoritesBadge');
-
-// Função para abrir popup
+// Abre aqueles popups bonitinhos
 function openPopup(overlay, popup) {
     overlay.classList.add('active');
     popup.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
-// Função para fechar popup
+// Fecha os popups
 function closePopup(overlay, popup) {
     overlay.classList.remove('active');
     popup.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-// Event listeners para abrir popups
-if (cartBtn) {
-    cartBtn.onclick = () => {
-        renderCart();
-        openPopup(cartOverlay, cartPopup);
-    };
-}
-
-if (favoritesBtn) {
-    favoritesBtn.onclick = () => {
-        renderFavorites();
-        openPopup(favoritesOverlay, favoritesPopup);
-    };
-}
-
-if (userBtn) {
-    userBtn.onclick = () => {
-        updateUserInterface();
-        openPopup(userOverlay, userPopup);
-    };
-}
-
-// Event listeners para fechar popups
-if (closeCart) {
-    closeCart.onclick = () => closePopup(cartOverlay, cartPopup);
-}
-
-if (closeFavorites) {
-    closeFavorites.onclick = () => closePopup(favoritesOverlay, favoritesPopup);
-}
-
-if (closeUser) {
-    closeUser.onclick = () => closePopup(userOverlay, userPopup);
-}
-
-// Fechar clicando fora
-if (cartOverlay) {
-    cartOverlay.onclick = (e) => {
-        if (e.target === cartOverlay) closePopup(cartOverlay, cartPopup);
-    };
-}
-
-if (favoritesOverlay) {
-    favoritesOverlay.onclick = (e) => {
-        if (e.target === favoritesOverlay) closePopup(favoritesOverlay, favoritesPopup);
-    };
-}
-
-if (userOverlay) {
-    userOverlay.onclick = (e) => {
-        if (e.target === userOverlay) closePopup(userOverlay, userPopup);
-    };
-}
-
-// Sistema de Login
+// Controle de login da usuária
 let isLoggedIn = false;
-const notLoggedContent = document.getElementById('notLoggedContent');
-const loggedContent = document.getElementById('loggedContent');
-const loginBtn = document.getElementById('loginBtn');
-const logoutBtn = document.getElementById('logoutBtn');
+let notLoggedContent, loggedContent, loginBtn, logoutBtn;
 
 function updateUserInterface() {
     if (isLoggedIn) {
@@ -107,28 +37,12 @@ function updateUserInterface() {
     }
 }
 
-if (loginBtn) {
-    loginBtn.onclick = (e) => {
-        e.preventDefault();
-        isLoggedIn = true;
-        updateUserInterface();
-        closePopup(userOverlay, userPopup);
-    };
-}
-
-if (logoutBtn) {
-    logoutBtn.onclick = (e) => {
-        e.preventDefault();
-        isLoggedIn = false;
-        updateUserInterface();
-    };
-}
-
-// Função para atualizar badges
+// Atualiza aqueles numerozinhos nos ícones
 function updateBadges() {
     if (cartBadge) {
-        cartBadge.textContent = cartItems.length;
-        if (cartItems.length > 0) {
+        const totalItems = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        cartBadge.textContent = totalItems;
+        if (totalItems > 0) {
             cartBadge.classList.add('show', 'animate');
             setTimeout(() => cartBadge.classList.remove('animate'), 500);
         } else {
@@ -147,41 +61,74 @@ function updateBadges() {
     }
 }
 
-// Função para adicionar ao carrinho
+// Adiciona produto no carrinho ♡
 function addToCart(productData) {
-    // Verifica se já existe
-    const exists = cartItems.find(item => item.name === productData.name);
-    if (!exists) {
+    // Vê se já tem esse produto no carrinho
+    const existingItem = cartItems.find(item => item.name === productData.name);
+    if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+        productData.quantity = 1;
         cartItems.push(productData);
+    }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateBadges();
+    renderCart();
+}
+
+// Remove produto do carrinho
+function removeFromCart(productName) {
+    cartItems = cartItems.filter(item => item.name !== productName);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateBadges();
+    renderCart();
+}
+
+// Aumenta a quantidade do produto
+function increaseQuantity(productName) {
+    const item = cartItems.find(item => item.name === productName);
+    if (item) {
+        item.quantity = (item.quantity || 1) + 1;
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
         updateBadges();
         renderCart();
     }
 }
 
-// Função para remover do carrinho
-function removeFromCart(productName) {
-    cartItems = cartItems.filter(item => item.name !== productName);
-    updateBadges();
-    renderCart();
+// Diminui a quantidade do produto
+function decreaseQuantity(productName) {
+    const item = cartItems.find(item => item.name === productName);
+    if (item) {
+        if (item.quantity > 1) {
+            item.quantity--;
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateBadges();
+            renderCart();
+        } else {
+            removeFromCart(productName);
+        }
+    }
 }
 
-// Função para adicionar aos favoritos
+// Adiciona nos favoritos ♥
 function addToFavorites(productData) {
     const exists = favoriteItems.find(item => item.name === productData.name);
     if (!exists) {
         favoriteItems.push(productData);
+        localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
         updateBadges();
         renderFavorites();
     }
 }
 
-// Função para remover dos favoritos
+// Remove dos favoritos
 function removeFromFavorites(productName) {
     favoriteItems = favoriteItems.filter(item => item.name !== productName);
+    localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
     updateBadges();
     renderFavorites();
     
-    // Atualiza o coração no card do produto
+    // Atualiza o coraçãozinho no card
     const productCards = document.querySelectorAll('.product-card');
     productCards.forEach(card => {
         const cardName = card.querySelector('h3')?.textContent;
@@ -195,7 +142,7 @@ function removeFromFavorites(productName) {
     });
 }
 
-// Função para renderizar carrinho
+// Mostra os produtos no carrinho
 function renderCart() {
     const cartItemsContainer = document.getElementById('cartItems');
     const cartTotalElement = document.getElementById('cartTotal');
@@ -209,12 +156,24 @@ function renderCart() {
     }
 
     let total = 0;
-    cartItemsContainer.innerHTML = cartItems.map(item => {
-        total += item.price;
+    cartItemsContainer.innerHTML = cartItems.map((item, index) => {
+        const quantity = item.quantity || 1;
+        const itemTotal = item.price * quantity;
+        total += itemTotal;
+        const escapedName = item.name.replace(/'/g, "\\'");
         return `
             <div class="cart-item">
                 <img src="${item.image}" alt="${item.name}">
-                <button class="remove-item-btn" onclick="removeFromCart('${item.name}')">✕</button>
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="decreaseQuantity('${escapedName}')">-</button>
+                        <span class="quantity-display">${quantity}</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('${escapedName}')">+</button>
+                    </div>
+                </div>
+                <button class="remove-item-btn" onclick="removeFromCart('${escapedName}')">✕</button>
             </div>
         `;
     }).join('');
@@ -224,7 +183,7 @@ function renderCart() {
     }
 }
 
-// Função para renderizar favoritos
+// Mostra os favoritos
 function renderFavorites() {
     const favoritesItemsContainer = document.getElementById('favoritesItems');
     
@@ -235,31 +194,43 @@ function renderFavorites() {
         return;
     }
 
-    favoritesItemsContainer.innerHTML = favoriteItems.map(item => `
+    favoritesItemsContainer.innerHTML = favoriteItems.map(item => {
+        const escapedName = item.name.replace(/'/g, "\\'");
+        return `
         <div class="cart-item favorite-item" data-product-name="${item.name}">
             <img src="${item.image}" alt="${item.name}">
-            <button class="remove-item-btn" onclick="removeFromFavorites('${item.name}')">✕</button>
+            <button class="remove-item-btn" onclick="removeFromFavorites('${escapedName}')">✕</button>
             <div class="product-tooltip">${item.name}</div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
-// Função para extrair dados do produto
+// Pega as informações do produto
 function getProductData(productCard) {
-    const name = productCard.querySelector('h3').textContent;
-    const priceText = productCard.querySelector('.price').textContent;
-    const price = parseFloat(priceText.replace('R$', '').replace(',', '.').trim());
-    const image = productCard.querySelector('img').src;
+    const nameElement = productCard.querySelector('h3');
+    const priceElement = productCard.querySelector('.price');
+    const imageElement = productCard.querySelector('img');
     
-    return { name, price, image };
+    if (!nameElement || !priceElement || !imageElement) {
+        console.error('Ops! Não achei os elementos do card:', productCard);
+        return null;
+    }
+    
+    const name = nameElement.textContent;
+    const priceText = priceElement.textContent;
+    const price = parseFloat(priceText.replace('R$', '').replace(',', '.').trim());
+    const image = imageElement.src;
+    
+    return { name, price, image, quantity: 1 };
 }
 
-// Função para filtrar produtos
+// Filtra os produtos por categoria
 function filterProducts(category) {
     const productCards = document.querySelectorAll('.product-card');
     const filterButtons = document.querySelectorAll('.filter-btn');
     
-    // Atualiza botões ativos
+    // Atualiza os botõezinhos ativos
     filterButtons.forEach(btn => {
         if (btn.getAttribute('data-category') === category) {
             btn.classList.add('active');
@@ -268,7 +239,7 @@ function filterProducts(category) {
         }
     });
     
-    // Filtra produtos
+    // Filtra os produtos
     productCards.forEach(card => {
         if (category === 'todos' || card.getAttribute('data-category') === category) {
             card.classList.remove('hidden');
@@ -280,8 +251,105 @@ function filterProducts(category) {
     });
 }
 
-// Inicialização quando o DOM estiver pronto
+// Quando a página carregar, configura tudo ♡
 document.addEventListener('DOMContentLoaded', () => {
+    // Pega todos os elementos da página
+    cartBtn = document.getElementById('cartBtn');
+    favoritesBtn = document.getElementById('favoritesBtn');
+    userBtn = document.getElementById('userBtn');
+    
+    cartOverlay = document.getElementById('cartOverlay');
+    favoritesOverlay = document.getElementById('favoritesOverlay');
+    userOverlay = document.getElementById('userOverlay');
+    
+    cartPopup = document.getElementById('cartPopup');
+    favoritesPopup = document.getElementById('favoritesPopup');
+    userPopup = document.getElementById('userPopup');
+    
+    closeCart = document.getElementById('closeCart');
+    closeFavorites = document.getElementById('closeFavorites');
+    closeUser = document.getElementById('closeUser');
+    
+    cartBadge = document.getElementById('cartBadge');
+    favoritesBadge = document.getElementById('favoritesBadge');
+    
+    // Pega os elementos de login
+    notLoggedContent = document.getElementById('notLoggedContent');
+    loggedContent = document.getElementById('loggedContent');
+    loginBtn = document.getElementById('loginBtn');
+    logoutBtn = document.getElementById('logoutBtn');
+    
+    // Configura os botões de login
+    if (loginBtn) {
+        loginBtn.onclick = (e) => {
+            e.preventDefault();
+            isLoggedIn = true;
+            updateUserInterface();
+            closePopup(userOverlay, userPopup);
+        };
+    }
+    
+    if (logoutBtn) {
+        logoutBtn.onclick = (e) => {
+            e.preventDefault();
+            isLoggedIn = false;
+            updateUserInterface();
+        };
+    }
+    
+    // Configura event listeners dos popups
+    if (cartBtn) {
+        cartBtn.onclick = () => {
+            renderCart();
+            openPopup(cartOverlay, cartPopup);
+        };
+    }
+    
+    if (favoritesBtn) {
+        favoritesBtn.onclick = () => {
+            renderFavorites();
+            openPopup(favoritesOverlay, favoritesPopup);
+        };
+    }
+    
+    if (userBtn) {
+        userBtn.onclick = () => {
+            updateUserInterface();
+            openPopup(userOverlay, userPopup);
+        };
+    }
+    
+    if (closeCart) {
+        closeCart.onclick = () => closePopup(cartOverlay, cartPopup);
+    }
+    
+    if (closeFavorites) {
+        closeFavorites.onclick = () => closePopup(favoritesOverlay, favoritesPopup);
+    }
+    
+    if (closeUser) {
+        closeUser.onclick = () => closePopup(userOverlay, userPopup);
+    }
+    
+    // Fechar clicando fora
+    if (cartOverlay) {
+        cartOverlay.onclick = (e) => {
+            if (e.target === cartOverlay) closePopup(cartOverlay, cartPopup);
+        };
+    }
+    
+    if (favoritesOverlay) {
+        favoritesOverlay.onclick = (e) => {
+            if (e.target === favoritesOverlay) closePopup(favoritesOverlay, favoritesPopup);
+        };
+    }
+    
+    if (userOverlay) {
+        userOverlay.onclick = (e) => {
+            if (e.target === userOverlay) closePopup(userOverlay, userPopup);
+        };
+    }
+    
     // Verifica se há categoria na URL
     const urlParams = new URLSearchParams(window.location.search);
     const categoryParam = urlParams.get('categoria');
@@ -334,14 +402,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const productCard = button.closest('.product-card');
             const productData = getProductData(productCard);
             
-            addToCart(productData);
-            
-            // Animação de feedback
-            button.style.transform = 'scale(0.8)';
-            setTimeout(() => button.style.transform = '', 200);
-            
-            productCard.style.transform = 'scale(1.05)';
-            setTimeout(() => productCard.style.transform = '', 300);
+            if (productData) {
+                addToCart(productData);
+                
+                // Animação de feedback
+                button.style.transform = 'scale(0.8)';
+                setTimeout(() => button.style.transform = '', 200);
+                
+                productCard.style.transform = 'scale(1.05)';
+                setTimeout(() => productCard.style.transform = '', 300);
+            }
         });
     });
     
@@ -355,17 +425,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const productCard = button.closest('.product-card');
             const productData = getProductData(productCard);
             
-            if (button.textContent === '♡') {
-                button.textContent = '♥';
-                button.style.color = '#e91e63';
-                addToFavorites(productData);
-                
-                button.style.animation = 'pulse 0.5s ease';
-                setTimeout(() => button.style.animation = '', 500);
-            } else {
-                button.textContent = '♡';
-                button.style.color = '';
-                removeFromFavorites(productData.name);
+            if (productData) {
+                if (button.textContent === '♡') {
+                    button.textContent = '♥';
+                    button.style.color = '#e91e63';
+                    addToFavorites(productData);
+                    
+                    button.style.animation = 'pulse 0.5s ease';
+                    setTimeout(() => button.style.animation = '', 500);
+                } else {
+                    button.textContent = '♡';
+                    button.style.color = '';
+                    removeFromFavorites(productData.name);
+                }
             }
         });
     });
@@ -472,12 +544,20 @@ function renderHomeCarousel() {
     
     // Reaplica event listeners dos corações
     const favoriteButtons = carousel.querySelectorAll('.favorite-btn');
-    favoriteButtons.forEach(button => {
+    favoriteButtons.forEach((button, btnIndex) => {
         button.addEventListener('click', (e) => {
             e.stopPropagation();
+            
+            const card = button.closest('.product-card');
+            const productName = card.querySelector('h3').textContent;
+            const priceText = card.querySelector('.price').textContent;
+            const price = parseFloat(priceText.replace('R$', '').replace(',', '.').trim());
+            const image = card.querySelector('img').src;
+            
             if (button.textContent === '♡') {
                 button.textContent = '♥';
                 button.style.color = '#e91e63';
+                addToFavorites({ name: productName, price: price, image: image, quantity: 1 });
                 
                 // Animação de pulso
                 button.style.animation = 'pulse 0.5s ease';
@@ -487,6 +567,7 @@ function renderHomeCarousel() {
             } else {
                 button.textContent = '♡';
                 button.style.color = '';
+                removeFromFavorites(productName);
             }
         });
     });
