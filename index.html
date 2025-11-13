@@ -36,24 +36,48 @@
         <button class="finalize-btn">Finalizar Compra</button>
     </div>
 </div>
-            <div class="popup-overlay" id="userOverlay">
-                <div class="popup user-popup" id="userPopup">
-                    <button class="popup-close" id="closeUser">✕</button>
-                    <div class="popup-header">
-            <div class="user-icon-large">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
+           <div class="popup-overlay" id="userOverlay">
+    <div class="popup user-popup" id="userPopup">
+        <button class="popup-close" id="closeUser">✕</button>
+        
+        <!-- Tela de NÃO logado -->
+        <div id="notLoggedContent">
+            <div class="popup-header">
+                <div class="user-icon-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <p class="login-label">ACESSO RESTRITO</p>
+                <h2 class="login-title">Cadastre-se<br>para acesso!</h2>
             </div>
-            <h2 class="user-greeting">Olá, Usuário</h2>
+            <div class="login-actions">
+                <a href="#" class="login-link">Clique aqui pra realizar o cadastro</a>
+                <a href="#" class="login-btn" id="loginBtn">Login</a>
+            </div>
         </div>
-        <div class="user-menu">
-            <a href="#" class="user-menu-item">Compras</a>
-            <a href="#" class="user-menu-item">Histórico</a>
-            <a href="#" class="user-menu-item">Configurações</a>
+
+        <!-- Tela de logado -->
+        <div id="loggedContent" style="display: none;">
+            <div class="popup-header">
+                <div class="user-icon-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <h2 class="user-greeting">Olá, Usuário</h2>
+            </div>
+            <div class="user-menu">
+                <a href="#" class="user-menu-item">Compras</a>
+                <a href="#" class="user-menu-item">Histórico</a>
+                <a href="#" class="user-menu-item">Configurações</a>
+                <a href="#" class="user-menu-item" id="logoutBtn">Sair</a>
+            </div>
         </div>
     </div>
+</div>
 </div>
   </div>
   <header>  </header>
