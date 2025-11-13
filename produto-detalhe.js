@@ -135,6 +135,79 @@ function toggleFavoriteDetail() {
     }
 }
 
+// Calcula o frete
+function calculateShipping() {
+    const cepInput = document.querySelector('.cep-calculator input');
+    const resultDiv = document.querySelector('.shipping-result');
+    
+    if (!cepInput || !cepInput.value) {
+        alert('Por favor, digite um CEP válido!');
+        return;
+    }
+    
+    const cep = cepInput.value.replace(/\D/g, '');
+    
+    if (cep.length !== 8) {
+        alert('CEP inválido! Digite um CEP com 8 dígitos.');
+        return;
+    }
+    
+    // Simula cálculo de frete
+    const btn = document.querySelector('.cep-calculator button');
+    btn.textContent = 'Calculando...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        // Valores simulados baseados no CEP
+        const freteNormal = (Math.random() * 20 + 10).toFixed(2);
+        const freteExpresso = (Math.random() * 30 + 25).toFixed(2);
+        const diasNormal = Math.floor(Math.random() * 5 + 5);
+        const diasExpresso = Math.floor(Math.random() * 2 + 2);
+        
+        if (!resultDiv) {
+            const newResultDiv = document.createElement('div');
+            newResultDiv.className = 'shipping-result';
+            newResultDiv.innerHTML = `
+                <div class="shipping-option">
+                    <div>
+                        <strong>📦 Frete Normal</strong>
+                        <p>Entrega em ${diasNormal} dias úteis</p>
+                    </div>
+                    <span class="shipping-price">R$ ${freteNormal.replace('.', ',')}</span>
+                </div>
+                <div class="shipping-option">
+                    <div>
+                        <strong>🚀 Frete Expresso</strong>
+                        <p>Entrega em ${diasExpresso} dias úteis</p>
+                    </div>
+                    <span class="shipping-price">R$ ${freteExpresso.replace('.', ',')}</span>
+                </div>
+            `;
+            document.querySelector('.cep-calculator').appendChild(newResultDiv);
+        } else {
+            resultDiv.innerHTML = `
+                <div class="shipping-option">
+                    <div>
+                        <strong>📦 Frete Normal</strong>
+                        <p>Entrega em ${diasNormal} dias úteis</p>
+                    </div>
+                    <span class="shipping-price">R$ ${freteNormal.replace('.', ',')}</span>
+                </div>
+                <div class="shipping-option">
+                    <div>
+                        <strong>🚀 Frete Expresso</strong>
+                        <p>Entrega em ${diasExpresso} dias úteis</p>
+                    </div>
+                    <span class="shipping-price">R$ ${freteExpresso.replace('.', ',')}</span>
+                </div>
+            `;
+        }
+        
+        btn.textContent = 'Calcular Frete';
+        btn.disabled = false;
+    }, 1500);
+}
+
 // Coloca a máscara no CEP
 document.addEventListener('DOMContentLoaded', () => {
     const cepInput = document.querySelector('.cep-calculator input');
@@ -145,6 +218,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 value = value.slice(0, 5) + '-' + value.slice(5, 8);
             }
             e.target.value = value;
+        });
+        
+        // Permite calcular frete ao pressionar Enter
+        cepInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                calculateShipping();
+            }
         });
     }
 });

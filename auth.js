@@ -22,17 +22,22 @@ function handleCadastro(event) {
     const senha = form.querySelector('input[type="password"]').value;
     const confirmarSenha = form.querySelectorAll('input[type="password"]')[1].value;
     
+    // Validações
+    if (senha.length < 6) {
+        alert('A senha deve ter pelo menos 6 caracteres!');
+        return;
+    }
+    
     if (senha !== confirmarSenha) {
         alert('As senhas não coincidem!');
         return;
     }
     
     // Simula o cadastro
-    alert('Cadastro realizado com sucesso!');
+    alert('Cadastro realizado com sucesso! 🎉');
     
     // Marca como logada
-    isLoggedIn = true;
-    updateUserInterface();
+    localStorage.setItem('isLoggedIn', 'true');
     
     // Volta pra home
     window.location.href = 'index.html';
@@ -45,8 +50,7 @@ function handleLogin(event) {
     alert('Login realizado com sucesso!');
     
     // Marca como logada
-    isLoggedIn = true;
-    updateUserInterface();
+    localStorage.setItem('isLoggedIn', 'true');
     
     // Volta pra home
     window.location.href = 'index.html';

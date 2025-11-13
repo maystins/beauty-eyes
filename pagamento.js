@@ -27,6 +27,40 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.value = value;
         });
     }
+    
+    // Máscara de telefone
+    const phoneInputs = document.querySelectorAll('input[type="tel"]');
+    phoneInputs.forEach(input => {
+        input.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                if (value.length <= 10) {
+                    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                    value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                } else {
+                    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                }
+            }
+            e.target.value = value;
+        });
+    });
+    
+    // Validação de email
+    const emailInputs = document.querySelectorAll('input[type="email"]');
+    emailInputs.forEach(input => {
+        input.addEventListener('blur', (e) => {
+            const email = e.target.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (email && !emailRegex.test(email)) {
+                e.target.setCustomValidity('Por favor, digite um email válido!');
+                e.target.reportValidity();
+            } else {
+                e.target.setCustomValidity('');
+            }
+        });
+    });
 });
 
 function finalizarPagamento() {
@@ -45,9 +79,9 @@ function finalizarPagamento() {
     
     // Simula o processamento do pagamento
     const btn = document.querySelector('.finalize-payment-btn');
-    const originalText = btn.textContent;
-    btn.textContent = 'PROCESSANDO...';
+    btn.innerHTML = '<span class="spinner"></span> PROCESSANDO...';
     btn.disabled = true;
+    btn.style.opacity = '0.7';
     
     setTimeout(() => {
         alert(`Pagamento via ${paymentMethod.value} processado com sucesso! 🎉\n\nObrigada pela compra!`);

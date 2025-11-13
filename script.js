@@ -23,8 +23,32 @@ function closePopup(overlay, popup) {
     document.body.style.overflow = 'auto';
 }
 
+// Mostra notificação toast
+function showToast(message, duration = 3000) {
+    // Remove toast anterior se existir
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    // Cria o toast
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    // Anima entrada
+    setTimeout(() => toast.classList.add('show'), 10);
+    
+    // Remove depois de um tempo
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
 // Controle de login da usuária
-let isLoggedIn = false;
+let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 let notLoggedContent, loggedContent, loginBtn, logoutBtn;
 
 function updateUserInterface() {
@@ -74,6 +98,7 @@ function addToCart(productData) {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     updateBadges();
     renderCart();
+    showToast('Produto adicionado ao carrinho! 🛒');
 }
 
 // Remove produto do carrinho
@@ -118,6 +143,7 @@ function addToFavorites(productData) {
         localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
         updateBadges();
         renderFavorites();
+        showToast('Adicionado aos favoritos! ♥');
     }
 }
 
@@ -127,6 +153,7 @@ function removeFromFavorites(productName) {
     localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
     updateBadges();
     renderFavorites();
+    showToast('Removido dos favoritos');
     
     // Atualiza o coraçãozinho no card
     const productCards = document.querySelectorAll('.product-card');
@@ -251,6 +278,45 @@ function filterProducts(category) {
     });
 }
 
+// Busca produtos por nome
+function searchProducts(searchTerm) {
+    const productCards = document.querySelectorAll('.product-card');
+    const searchLower = searchTerm.toLowerCase();
+    let foundCount = 0;
+    
+    productCards.forEach(card => {
+        const productName = card.querySelector('h3')?.textContent.toLowerCase() || '';
+        const productDesc = card.querySelector('p')?.textContent.toLowerCase() || '';
+        
+        if (productName.includes(searchLower) || productDesc.includes(searchLower)) {
+            card.classList.remove('hidden');
+            card.style.animation = 'none';
+            setTimeout(() => card.style.animation = '', 10);
+            foundCount++;
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+    
+    // Mostra mensagem se não encontrou nada
+    const productsGrid = document.querySelector('.products-grid');
+    const existingMsg = document.querySelector('.no-results-message');
+    
+    if (existingMsg) {
+        existingMsg.remove();
+    }
+    
+    if (foundCount === 0 && productsGrid) {
+        const noResultsMsg = document.createElement('div');
+        noResultsMsg.className = 'no-results-message';
+        noResultsMsg.innerHTML = `
+            <p>Ops! Não encontramos produtos com "${searchTerm}" 😢</p>
+            <p>Tenta buscar por outra coisa!</p>
+        `;
+        productsGrid.appendChild(noResultsMsg);
+    }
+}
+
 // Quando a página carregar, configura tudo ♡
 document.addEventListener('DOMContentLoaded', () => {
     // Pega todos os elementos da página
@@ -284,6 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginBtn.onclick = (e) => {
             e.preventDefault();
             isLoggedIn = true;
+            localStorage.setItem('isLoggedIn', 'true');
             updateUserInterface();
             closePopup(userOverlay, userPopup);
         };
@@ -293,9 +360,13 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutBtn.onclick = (e) => {
             e.preventDefault();
             isLoggedIn = false;
+            localStorage.setItem('isLoggedIn', 'false');
             updateUserInterface();
         };
     }
+    
+    // Atualiza interface ao carregar
+    updateUserInterface();
     
     // Configura event listeners dos popups
     if (cartBtn) {
@@ -350,12 +421,17 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
     
-    // Verifica se há categoria na URL
+    // Verifica se há categoria ou busca na URL
     const urlParams = new URLSearchParams(window.location.search);
     const categoryParam = urlParams.get('categoria');
+    const searchParam = urlParams.get('busca');
     
     if (categoryParam) {
         filterProducts(categoryParam);
+    }
+    
+    if (searchParam) {
+        searchProducts(searchParam);
     }
     
     // Filtros de produtos

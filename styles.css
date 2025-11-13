@@ -2884,3 +2884,109 @@ html {
         margin: 5px 0;
         font-size: 13px;
     }
+
+/* Toast de notificação */
+.toast-notification {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #6b4654;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    font-size: 16px;
+    font-weight: 500;
+    transition: bottom 0.3s ease;
+    white-space: nowrap;
+}
+
+.toast-notification.show {
+    bottom: 30px;
+}
+
+/* Mensagem de nenhum resultado */
+.no-results-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b4654;
+}
+
+.no-results-message p:first-child {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.no-results-message p:last-child {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+/* Resultado do cálculo de frete */
+.shipping-result {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 15px;
+    border: 2px solid #e5c4d9;
+}
+
+.shipping-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+
+.shipping-option:last-child {
+    margin-bottom: 0;
+}
+
+.shipping-option:hover {
+    transform: translateX(5px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.shipping-option strong {
+    color: #6b4654;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.shipping-option p {
+    color: #999;
+    font-size: 14px;
+    margin: 0;
+}
+
+.shipping-price {
+    color: #e91e63;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Spinner de loading */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
