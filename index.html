@@ -15,8 +15,13 @@
     <div class="popup" id="cartPopup">
         <button class="popup-close" id="closeCart">✕</button>
         <div class="popup-header">
-            <span class="cart-icon-large">🛒</span>
-            <h2 class="popup-title">Carrinho</h2>
+        <span class="cart-icon-large">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8" cy="21" r="1"></circle>
+                <circle cx="19" cy="21" r="1"></circle>
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+            </svg>
+        </span>            <h2 class="popup-title">Carrinho</h2>
         </div>
         <div class="cart-items">
             <div class="cart-item"><img src="olhos.jpg" alt="Produto"></div>
@@ -31,11 +36,16 @@
         <button class="finalize-btn">Finalizar Compra</button>
     </div>
 </div>
-<div class="popup-overlay" id="userOverlay">
-    <div class="popup user-popup" id="userPopup">
-        <button class="popup-close" id="closeUser">✕</button>
-        <div class="popup-header">
-            <div class="user-icon-large">👤</div>
+            <div class="popup-overlay" id="userOverlay">
+                <div class="popup user-popup" id="userPopup">
+                    <button class="popup-close" id="closeUser">✕</button>
+                    <div class="popup-header">
+            <div class="user-icon-large">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
             <h2 class="user-greeting">Olá, Usuário</h2>
         </div>
         <div class="user-menu">
@@ -61,7 +71,9 @@
         </div>
         
         <div class="logo">
-            <img src="logo.png" alt="Beauty Eyes Logo" class="logo-img">
+        <a href="#home">
+        <img src="logo.png" alt="Beauty Eyes Logo" class="logo-img">
+        </a>
         </div>
         
         <div class="header-right">
@@ -71,29 +83,24 @@
             <div class="dropdown-menu">
                 <div class="dropdown-columns">
                     <div class="dropdown-column">
-                        <h4>OFERTAS</h4>
-                        <a href="#">ACESSÓRIOS E FERRAMENTAS</a>
+                        <a href="#" class="dropdown-title">OFERTAS</a>                        <a href="#">ACESSÓRIOS E FERRAMENTAS</a>
                         <a href="#">CÍLIOS BEAUTY START</a>
-                        <h4>COLAS E REMOVEDORES</h4>
+                        <a href="#" class="dropdown-title">COLAS E REMOVEDORES</a>                        <a href="#">ACESSÓRIOS E FERRAMENTAS</a>
                         <a href="#">AMOSTRA ADESIVO</a>
                     </div>
                     <div class="dropdown-column">
-                        <h4>CÍLIOS</h4>
-                        <a href="#">CÍLIOS PRETO</a>
+                        <a href="#" class="dropdown-title">CÍLIOS</a>                        <a href="#">CÍLIOS PRETO</a>
                         <a href="#">CÍLIOS COLORIDO</a>
                         <a href="#">FIOS TECNOLÓGICOS</a>
                         <a href="#">VOLUME BRASILEIRO</a>
                         <a href="#">VOLUME RUSSO</a>
                         <a href="#">MEGA VOLUME</a>
-                        <h4>CURSOS</h4>
-                        <a href="#">CLUBE DE VANTAGEM</a>
+                    <a href="#" class="dropdown-title">CURSOS</a>                        <a href="#">CLUBE DE VANTAGEM</a>
                     </div>
                     <div class="dropdown-column">
-                        <h4>KITS</h4>
-                        <a href="#">KIT LICENCIADA</a>
-                        <h4>PINÇAS</h4>
-                        <h4>CABELO</h4>
-                    </div>
+                        <a href="#" class="dropdown-title">KITS</a>                        <a href="#">KIT LICENCIADA</a>
+                        <a href="#" class="dropdown-title">PINÇAS</a>
+                        <a href="#" class="dropdown-title">CABELO</a>                    </div>
                 </div>
             </div>
         </div>                
@@ -218,14 +225,15 @@
     </section>
 
     <section class="about-section" id="sobre">
-        <div class="about-image-box">💅</div>
-        <div class="about-content">
-            <h2>Beauty Eyes define o padrão de <span>excelência de beleza</span></h2>
-            <p>Oferecemos os melhores produtos do mercado com qualidade premium e garantia de autenticidade. Nossa missão é proporcionar a melhor experiência em produtos de beleza profissional.</p>
-            <button class="btn">Conheça mais</button>
-        </div>
-    </section>
-
+    <div class="about-image">
+        <img src="cola.png" alt="Sobre Beauty Eyes">
+    </div>
+    <div class="about-content">
+        <h2>Beauty Eyes define o padrão de <span>excelência de beleza</span></h2>
+        <p>Cadastre-se e receba ofertas com preços exclusivos. Seja o primeiro a receber nossas novidades, cadastre-se, é grátis!</p>
+        <button class="btn">Crie sua conta</button>
+    </div>
+</section>
     <section class="contact-section" id="contato">
         <div class="contact-container">
             <h2>Precisa de ajuda?<br>Estamos felizes em te ajudar!</h2>
@@ -254,7 +262,7 @@
         </div>
         <div class="newsletter-form">
             <input type="email" placeholder="Seu email">
-            <button>Enviar →</button>
+            <button>Enviar</button>
         </div>
     </div>
 
