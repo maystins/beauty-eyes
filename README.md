@@ -24,7 +24,7 @@ Basic Javascript-driven interactions
 To run the project locally:
 
 Clone the repository:
-git clone https://github.com/your-username/beauty-eyes.git
+git clone https://github.com/maystins/beauty-eyes
 Navigate to the project directory.
 Open the index.html file in a web browser.
 No additional dependencies or build tools are required.
