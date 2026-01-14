@@ -93,3 +93,37 @@ function finalizarPagamento() {
         window.location.href = 'index.html';
     }, 2000);
 }
+// Popup do Usuário
+const userBtn = document.getElementById('userBtn');
+const userPopup = document.getElementById('userPopup');
+const closeUserPopup = document.getElementById('closeUserPopup');
+
+// Abrir popup
+userBtn.addEventListener('click', () => {
+    userPopup.style.display = 'flex';
+});
+
+// Fechar popup
+closeUserPopup.addEventListener('click', () => {
+    userPopup.style.display = 'none';
+});
+
+// Fechar ao clicar fora do popup
+window.addEventListener('click', (event) => {
+    if (event.target === userPopup) {
+        userPopup.style.display = 'none';
+    }
+});
+
+// Função de login (exemplo)
+function loginUser(event) {
+    event.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const senha = document.getElementById('loginSenha').value;
+    
+    if (email && senha) {
+        alert('Login realizado com sucesso!');
+        userPopup.style.display = 'none';
+        // Aqui você enviaria para seu servidor
+    }
+}
